@@ -9,7 +9,7 @@ php:
 env:
   global:
     - REPO_NAME=cakephp-uni-login
-    - PLUGIN_NAME=UniLogin
+    - PLUGIN_NAME=UniLoginWebservice
     - REQUIRE=""
     - DB=mysql CAKE_VERSION=master
 
