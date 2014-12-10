@@ -1,0 +1,27 @@
+{
+	"name": "oefenweb/cakephp-uni-login-webservice",
+	"description": "A UNI•Login (Web Service) Plugin for CakePHP",
+	"type": "cakephp-plugin",
+	"keywords": [
+		"cakephp", "web service"
+	],
+	"homepage": "http://github.com/Oefenweb/cakephp-uni-login-webservice",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Oefenweb.nl BV team",
+			"homepage": "https://github.com/Oefenweb/cakephp-uni-login-webservice/contributors"
+		}
+	],
+	"require": {
+		"php": ">=5.3.10",
+		"composer/installers": "~1.0"
+	},
+	"support": {
+		"issues": "https://github.com/Oefenweb/cakephp-uni-login-webservice/issues",
+		"source": "https://github.com/Oefenweb/cakephp-uni-login-webservice"
+	},
+	"extra": {
+		"installer-name": "UniLoginWebservice"
+	}
+}
