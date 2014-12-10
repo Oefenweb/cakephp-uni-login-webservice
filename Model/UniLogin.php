@@ -110,7 +110,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
 		$params['instid'] = $instid;
 		$result = $this->query('hentAnsatte', $params);
 		if ($result = $this->_extractResult($result)) {
-debug($result);
 			$result = $this->_convertUserList($result);
 		}
 		return $result;
