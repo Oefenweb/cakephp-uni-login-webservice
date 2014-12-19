@@ -7,10 +7,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
 
 	public $useTable = false;
 
-	public function test() {
-		$this->query('SoapMethod', array('mySoapParams'));
-	}
-
 /**
  * Returns authentication parameters
  *
@@ -24,7 +20,12 @@ class UniLogin extends UniLoginWebserviceAppModel {
 		return $params;
 	}
 
-	public function _extractResult($return) {
+/**
+ * Extracts "return"-property from given object
+ *
+ * @return mixed The extracted property (mixed), or false (bool) on failure
+ */
+	protected function _extractResult($return) {
 		$result = false;
 		if (is_object($return)) {
 			$property = 'return';
@@ -89,7 +90,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  */
 	public function getPerson($brugerid) {
 		$params = $this->_getAuthParameters();
-		$params['$brugerid'] = $brugerid;
+		$params['brugerid'] = $brugerid;
 		$result = $this->query('hentPerson', $params);
 		if ($result = $this->_extractResult($result)) {
 			$result = $this->_convertUser($result);
@@ -116,6 +117,23 @@ class UniLogin extends UniLoginWebserviceAppModel {
 	}
 
 /**
+ * Returns a list of employees with detailed person information at the institution “instnr”.
+ *
+ * @param string $instid 6-char institution number (from Danmarks Statistik, e.g. 101001).
+ * @return array List of employees
+ */
+	public function getEmployeesWithDetails($instid) {
+		$result = array();
+		$employees = $this->getEmployees($instid);
+		if (!empty($employees)) {
+			foreach ($employees as $employee) {
+				$result[] = $this->getPerson($employee['uni_login_key']);
+			}
+		}
+		return $result;
+	}
+
+/**
  * Returns a list of all pupils and students at the institution “instnr”.
  *
  *  Wrapper for API call hentAlleElever
@@ -129,6 +147,23 @@ class UniLogin extends UniLoginWebserviceAppModel {
 		$result = $this->query('hentAlleElever', $params);
 		if ($result = $this->_extractResult($result)) {
 			$result = $this->_convertUserList($result);
+		}
+		return $result;
+	}
+
+/**
+ * Returns a list of students with detailed person information at the institution “instnr”.
+ *
+ * @param string $instid 6-char institution number (from Danmarks Statistik, e.g. 101001).
+ * @return array List of students
+ */
+	public function getStudentsWithDetails($instid) {
+		$result = array();
+		$students = $this->getStudents($instid);
+		if (!empty($students)) {
+			foreach ($students as $student) {
+				$result[] = $this->getPerson($student['uni_login_key']);
+			}
 		}
 		return $result;
 	}
