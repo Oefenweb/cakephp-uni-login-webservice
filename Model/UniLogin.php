@@ -7,10 +7,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
 
 	public $useTable = false;
 
-	public function test() {
-		$this->query('SoapMethod', array('mySoapParams'));
-	}
-
 /**
  * Returns authentication parameters
  *
