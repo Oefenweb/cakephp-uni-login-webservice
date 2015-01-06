@@ -1,6 +1,6 @@
 # UniLoginWebservice plugin for CakePHP
 
-[![Build Status](https://travis-ci.org/Oefenweb/cakephp-uni-login-webservice.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-uni-login-webservice) [![Coverage Status](https://coveralls.io/repos/Oefenweb/cakephp-uni-login-webservice/badge.png)](https://coveralls.io/r/Oefenweb/cakephp-uni-login-webservice) [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-uni-login-webservice.svg)](https://packagist.org/packages/oefenweb/cakephp-uni-login-webservice)
+[![Build Status](https://travis-ci.org/Oefenweb/cakephp-uni-login-webservice.png?branch=master)](https://travis-ci.org/Oefenweb/cakephp-uni-login-webservice) [![Coverage Status](https://coveralls.io/repos/Oefenweb/cakephp-uni-login-webservice/badge.png)](https://coveralls.io/r/Oefenweb/cakephp-uni-login-webservice) [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-uni-login-webservice.svg)](https://packagist.org/packages/oefenweb/cakephp-uni-login-webservice) [![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-uni-login-webservice/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-uni-login-webservice)
 
 ## Requirements
 
