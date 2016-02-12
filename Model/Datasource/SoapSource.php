@@ -73,8 +73,7 @@ class SoapSource extends DataSource {
  */
 	protected function _parseConfig() {
 		if (!class_exists('SoapClient')) {
-			$this->error = 'Class SoapClient not found, please enable Soap extensions';
-			$this->showError();
+			$this->showError('Class SoapClient not found, please enable Soap extensions');
 			return false;
 		}
 		$options = array('trace' => Configure::read('debug') > 0);
@@ -102,8 +101,7 @@ class SoapSource extends DataSource {
 		try {
 			$this->client = new SoapClient($this->config['wsdl'], $options);
 		} catch(SoapFault $fault) {
-			$this->error = $fault->faultstring;
-			$this->showError();
+			$this->showError($fault->faultstring);
 		}
 
 		if ($this->client) {
@@ -152,8 +150,7 @@ class SoapSource extends DataSource {
 		try {
 			$result = $this->client->__soapCall($method, $queryData);
 		} catch (SoapFault $fault) {
-			$this->error = $fault->faultstring;
-			$this->showError();
+			$this->showError($fault->faultstring);
 			return false;
 		}
 		return $result;
@@ -178,19 +175,14 @@ class SoapSource extends DataSource {
 	}
 
 /**
- * Shows an error message and outputs the SOAP result if passed
+ * Writes an error message to log file
  *
- * @param string $result A SOAP result
+ * @param string $error Error message
  * @return string The last SOAP response
  */
-	public function showError($result = null) {
-		if (Configure::read('debug') > 0) {
-			if ($this->error) {
-				trigger_error('<span style = "color:Red;text-align:left"><b>SOAP Error:</b> ' . $this->error . '</span>', E_USER_WARNING);
-			}
-			if (!empty($result)) {
-				echo sprintf("<p><b>Result:</b> %s </p>", $result);
-			}
-		}
+	public function showError($error) {
+		$message = __d('uni_login_webservice', 'SOAP Error: %s', $error);
+		CakeLog::error($message);
 	}
+
 }
