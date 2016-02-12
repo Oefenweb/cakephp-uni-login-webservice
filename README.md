@@ -26,6 +26,16 @@ Configure::write('UniLoginWebservice.wsBrugerid', 'wsBrugerid');
 Configure::write('UniLoginWebservice.wsPassword', 'wsPassword');
 ```
 
+
+Ensure to configure the following lines in `app/Config/database.php`:
+
+```
+public $uniLoginWsdl = array(
+	'datasource' => 'UniLoginWebservice.SoapSource',
+	'wsdl' => 'https://ws02.infotjeneste.uni-c.dk/infotjeneste-ws/ws?WSDL'
+);
+```
+
 ## Usage
 
 ```
