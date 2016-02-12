@@ -1,10 +1,25 @@
 <?php
 App::uses('UniLoginWebserviceAppModel', 'UniLoginWebservice.Model');
 
+/**
+ * UniLogin Model
+ *
+ * @package       UniLoginWebservice.Model
+ */
 class UniLogin extends UniLoginWebserviceAppModel {
 
+/**
+ * The name of the DataSource connection that this Model uses.
+ *
+ * @var string
+ */
 	public $useDbConfig = 'uniLoginWsdl';
 
+/**
+ * Use table.
+ *
+ * @var mixed False or table name
+ */
 	public $useTable = false;
 
 /**
@@ -237,8 +252,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			}
 		}
 
-		if ($result) {
-		}
 		return $result;
 	}
 
