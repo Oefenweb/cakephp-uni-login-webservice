@@ -22,6 +22,8 @@ CakePlugin::load('UniLoginWebservice');
 Ensure to configure the following lines in `app/Config/bootstrap.php`:
 
 ```
+Configure::write('UniLoginWebservice.wsBrugerid', 'wsBrugerid');
+Configure::write('UniLoginWebservice.wsPassword', 'wsPassword');
 ```
 
 ## Usage
