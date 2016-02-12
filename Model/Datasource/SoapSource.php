@@ -39,7 +39,7 @@ class SoapSource extends DataSource {
 /**
  * Connection status
  *
- * @var boolean
+ * @var bool
  */
 	public $connected = false;
 
@@ -95,8 +95,7 @@ class SoapSource extends DataSource {
 /**
  * Connects to the SOAP server using the WSDL in the configuration
  *
- * @param array $config An array defining the new configuration settings
- * @return boolean True on success, false on failure
+ * @return bool True on success, false on failure
  */
 	public function connect() {
 		$options = $this->_parseConfig();
@@ -116,7 +115,7 @@ class SoapSource extends DataSource {
 /**
  * Sets the SoapClient instance to null
  *
- * @return boolean True
+ * @return bool True
  */
 	public function close() {
 		$this->client = null;
@@ -129,15 +128,15 @@ class SoapSource extends DataSource {
  *
  * @return array List of SOAP methods
  */
-	public function listSources($data = null) {
+	public function listSources() {
 		return $this->client->__getFunctions();
 	}
 
 /**
  * Query the SOAP server with the given method and parameters
  *
- * @param $method string
- * @param $queryData array
+ * @param string $method Name of method to call
+ * @param array $queryData A list with parameters to pass
  * @return mixed Returns the result on success, false on failure
  */
 	public function query($method, $queryData = array()) {
