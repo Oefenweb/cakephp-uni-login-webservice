@@ -13,7 +13,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  *
  * @var string
  */
-	public $useDbConfig = 'uniLoginWsdl';
+	public $useDbConfig = 'uniLoginWebservice';
 
 /**
  * Use table.
