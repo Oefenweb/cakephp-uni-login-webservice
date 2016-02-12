@@ -23,15 +23,15 @@ class UniLogin extends UniLoginWebserviceAppModel {
 /**
  * Extracts "return"-property from given object
  *
- * @param object $return Data to extract "return"-property from
+ * @param object $data Data to extract "return"-property from
  * @return mixed The extracted property (mixed), or false (bool) on failure
  */
-	protected function _extractResult($return) {
+	protected function _extractResult($data) {
 		$result = false;
-		if (is_object($return)) {
+		if (is_object($data)) {
 			$property = 'return';
-			if (property_exists($return, $property)) {
-				$result = $return->{$property};
+			if (property_exists($data, $property)) {
+				$result = $data->{$property};
 			}
 		}
 		return $result;
