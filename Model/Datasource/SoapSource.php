@@ -1,24 +1,10 @@
 <?php
-/**
- * SOAP Datasource
- *
- * PHP Version 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         CakePHP Datasources v 0.3
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
+App::uses('DataSource', 'Model.Datasource');
 
 /**
- * SoapSource
+ * SOAP DataSource
  *
+ * @package       UniLoginWebservice.Model.Datasource
  */
 class SoapSource extends DataSource {
 
@@ -39,7 +25,7 @@ class SoapSource extends DataSource {
 /**
  * Connection status
  *
- * @var boolean
+ * @var bool
  */
 	public $connected = false;
 
@@ -73,8 +59,7 @@ class SoapSource extends DataSource {
  */
 	protected function _parseConfig() {
 		if (!class_exists('SoapClient')) {
-			$this->error = 'Class SoapClient not found, please enable Soap extensions';
-			$this->showError();
+			$this->showError('Class SoapClient not found, please enable Soap extensions');
 			return false;
 		}
 		$options = array('trace' => Configure::read('debug') > 0);
@@ -95,16 +80,14 @@ class SoapSource extends DataSource {
 /**
  * Connects to the SOAP server using the WSDL in the configuration
  *
- * @param array $config An array defining the new configuration settings
- * @return boolean True on success, false on failure
+ * @return bool True on success, false on failure
  */
 	public function connect() {
 		$options = $this->_parseConfig();
 		try {
 			$this->client = new SoapClient($this->config['wsdl'], $options);
 		} catch(SoapFault $fault) {
-			$this->error = $fault->faultstring;
-			$this->showError();
+			$this->showError($fault->faultstring);
 		}
 
 		if ($this->client) {
@@ -116,7 +99,7 @@ class SoapSource extends DataSource {
 /**
  * Sets the SoapClient instance to null
  *
- * @return boolean True
+ * @return bool True
  */
 	public function close() {
 		$this->client = null;
@@ -129,15 +112,15 @@ class SoapSource extends DataSource {
  *
  * @return array List of SOAP methods
  */
-	public function listSources($data = null) {
+	public function listSources() {
 		return $this->client->__getFunctions();
 	}
 
 /**
  * Query the SOAP server with the given method and parameters
  *
- * @param $method string
- * @param $queryData array
+ * @param string $method Name of method to call
+ * @param array $queryData A list with parameters to pass
  * @return mixed Returns the result on success, false on failure
  */
 	public function query($method, $queryData = array()) {
@@ -153,8 +136,7 @@ class SoapSource extends DataSource {
 		try {
 			$result = $this->client->__soapCall($method, $queryData);
 		} catch (SoapFault $fault) {
-			$this->error = $fault->faultstring;
-			$this->showError();
+			$this->showError($fault->faultstring);
 			return false;
 		}
 		return $result;
@@ -179,19 +161,14 @@ class SoapSource extends DataSource {
 	}
 
 /**
- * Shows an error message and outputs the SOAP result if passed
+ * Writes an error message to log file
  *
- * @param string $result A SOAP result
+ * @param string $error Error message
  * @return string The last SOAP response
  */
-	public function showError($result = null) {
-		if (Configure::read('debug') > 0) {
-			if ($this->error) {
-				trigger_error('<span style = "color:Red;text-align:left"><b>SOAP Error:</b> ' . $this->error . '</span>', E_USER_WARNING);
-			}
-			if (!empty($result)) {
-				echo sprintf("<p><b>Result:</b> %s </p>", $result);
-			}
-		}
+	public function showError($error) {
+		$message = __d('uni_login_webservice', 'SOAP Error: %s', $error);
+		CakeLog::error($message);
 	}
+
 }

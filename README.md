@@ -5,7 +5,7 @@
 ## Requirements
 
 * CakePHP 2.4.2 or greater.
-* PHP 5.3.10 or greater.
+* PHP 5.4.16 or greater.
 
 ## Installation
 
@@ -22,6 +22,18 @@ CakePlugin::load('UniLoginWebservice');
 Ensure to configure the following lines in `app/Config/bootstrap.php`:
 
 ```
+Configure::write('UniLoginWebservice.wsBrugerid', 'wsBrugerid');
+Configure::write('UniLoginWebservice.wsPassword', 'wsPassword');
+```
+
+
+Ensure to configure the following lines in `app/Config/database.php`:
+
+```
+public $uniLoginWebservice = array(
+	'datasource' => 'UniLoginWebservice.SoapSource',
+	'wsdl' => 'https://ws02.infotjeneste.uni-c.dk/infotjeneste-ws/ws?WSDL'
+);
 ```
 
 ## Usage

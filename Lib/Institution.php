@@ -2,6 +2,7 @@
 /**
  * Institution class
  *
+ * @package       UniLoginWebservice.Lib
  */
 class Institution {
 
@@ -134,4 +135,5 @@ class Institution {
  * @var string
  */
 	public $region;
+
 }

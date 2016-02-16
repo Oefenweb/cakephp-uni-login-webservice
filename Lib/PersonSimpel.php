@@ -2,6 +2,7 @@
 /**
  * PersonSimpel class
  *
+ * @package       UniLoginWebservice.Lib
  */
 class PersonSimpel {
 

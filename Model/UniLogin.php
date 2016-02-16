@@ -1,10 +1,25 @@
 <?php
 App::uses('UniLoginWebserviceAppModel', 'UniLoginWebservice.Model');
 
+/**
+ * UniLogin Model
+ *
+ * @package       UniLoginWebservice.Model
+ */
 class UniLogin extends UniLoginWebserviceAppModel {
 
-	public $useDbConfig = 'uniLoginWsdl';
+/**
+ * The name of the DataSource connection that this Model uses.
+ *
+ * @var string
+ */
+	public $useDbConfig = 'uniLoginWebservice';
 
+/**
+ * Use table.
+ *
+ * @var mixed False or table name
+ */
 	public $useTable = false;
 
 /**
@@ -23,14 +38,15 @@ class UniLogin extends UniLoginWebserviceAppModel {
 /**
  * Extracts "return"-property from given object
  *
+ * @param object $data Data to extract "return"-property from
  * @return mixed The extracted property (mixed), or false (bool) on failure
  */
-	protected function _extractResult($return) {
+	protected function _extractResult($data) {
 		$result = false;
-		if (is_object($return)) {
+		if (is_object($data)) {
 			$property = 'return';
-			if (property_exists($return, $property)) {
-				$result = $return->{$property};
+			if (property_exists($data, $property)) {
+				$result = $data->{$property};
 			}
 		}
 		return $result;
@@ -236,8 +252,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			}
 		}
 
-		if ($result) {
-		}
 		return $result;
 	}
 
