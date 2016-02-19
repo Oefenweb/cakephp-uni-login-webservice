@@ -110,9 +110,10 @@ class SoapSource extends DataSource {
 /**
  * Returns the available SOAP methods
  *
+ * @param mixed $data Unused in this class.
  * @return array List of SOAP methods
  */
-	public function listSources() {
+	public function listSources($data = null) {
 		return $this->client->__getFunctions();
 	}
 
