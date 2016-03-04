@@ -349,6 +349,7 @@ class UniLoginTest extends CakeTestCase {
 			'username' => 'Svend Hansen12',
 			'email' => 'Svend.Hansen12@skolekom.dk',
 			'school_uni_login_key' => '101005',
+			'uni_login_role' => 'kursist',
 			'role' => 'anonymous user with limited lifespan',
 			'date_of_birth' => '1997-05-13'
 		);

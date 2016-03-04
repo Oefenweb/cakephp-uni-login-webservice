@@ -326,6 +326,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
 
 		if ($result) {
 			if ($role = Hash::get($result, 'role')) {
+				$result['uni_login_role'] = $role;
 				$result['role'] = $this->_convertRole($role);
 			}
 			if ($dateOfBirth = Hash::get($result, 'date_of_birth')) {
