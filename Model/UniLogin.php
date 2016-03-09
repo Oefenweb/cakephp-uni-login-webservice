@@ -28,10 +28,10 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return array Authentication parameters
  */
 	protected function _getAuthParameters() {
-		$params = array(
+		$params = [
 			'wsBrugerid' => Configure::read('UniLoginWebservice.wsBrugerid'),
 			'wsPassword' => Configure::read('UniLoginWebservice.wsPassword')
-		);
+		];
 		return $params;
 	}
 
@@ -139,7 +139,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return array List of employees
  */
 	public function getEmployeesWithDetails($instid) {
-		$result = array();
+		$result = [];
 		$employees = $this->getEmployees($instid);
 		if (!empty($employees)) {
 			foreach ($employees as $employee) {
@@ -174,7 +174,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return array List of students
  */
 	public function getStudentsWithDetails($instid) {
-		$result = array();
+		$result = [];
 		$students = $this->getStudents($instid);
 		if (!empty($students)) {
 			foreach ($students as $student) {
@@ -197,7 +197,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			if (property_exists($userList, $property)) {
 				if (is_array($userList->{$property})) {
 					$minimal = true;
-					$result = array();
+					$result = [];
 					foreach ($userList->{$property} as $user) {
 						if ($item = $this->_convertUser($user, $minimal)) {
 							$result[] = $item;
@@ -219,7 +219,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return mixed Converted institution data (array), or false (bool) on failure
  */
 	protected function _convertInstitution($institution) {
-		$mapping = array(
+		$mapping = [
 			'uni_login_key' => 'Instnr',
 			'name' => 'Navn',
 			'type' => 'Type',
@@ -238,11 +238,11 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			'administrating_municipal_name' => 'Admkommune',
 			'region' => 'Regionsnr',
 			'region_name' => 'Region',
-		);
+		];
 
 		$result = false;
 		if (is_object($institution)) {
-			$result = array();
+			$result = [];
 			foreach ($mapping as $name => $property) {
 				if (!property_exists($institution, $property)) {
 					$result = false;
@@ -262,7 +262,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return mixed Converted role (string), or false (bool) on failure
  */
 	protected function _convertRole($role) {
-		$mapping = array(
+		$mapping = [
 			'lærer' => 'teacher',
 			'tap' => 'technical / administrative employee',
 			'pæd' => 'educator', // Pædagog
@@ -281,7 +281,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			'hjpc_ansv' => 'HomePC responsible',
 			'hjpc_ansv_a' => 'HomePC responsible for A-leg',
 			'hjpc_ansv_p' => 'HomePC responsible for P-leg'
-		);
+		];
 		return Hash::get($mapping, $role)?:false;
 	}
 
@@ -293,7 +293,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * @return array mixed Converted user data (array), or false (bool) on failure
  */
 	protected function _convertUser($user, $minimal = false) {
-		$mapping = array(
+		$mapping = [
 			'uni_login_key' => 'Brugerid',
 			'full_name' => 'Navn',
 			'first_name' => 'Fornavn',
@@ -303,18 +303,18 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			'school_uni_login_key' => 'Instnr',
 			'role' => 'Funktionsmarkering',
 			'date_of_birth' => 'Foedselsdag'
-		);
+		];
 
 		if ($minimal) {
-			$mapping = array(
+			$mapping = [
 				'uni_login_key' => 'Brugerid',
 				'full_name' => 'Navn'
-			);
+			];
 		}
 
 		$result = false;
 		if (is_object($user)) {
-			$result = array();
+			$result = [];
 			foreach ($mapping as $name => $property) {
 				if (!property_exists($user, $property)) {
 					$result = false;

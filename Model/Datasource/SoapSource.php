@@ -34,20 +34,20 @@ class SoapSource extends DataSource {
  *
  * @var array
  */
-	protected $_baseConfig = array(
+	protected $_baseConfig = [
 		'wsdl' => null,
 		'location' => '',
 		'uri' => '',
 		'login' => '',
 		'password' => '',
-		'authentication' => 'SOAP_AUTHENTICATION_BASIC');
+		'authentication' => 'SOAP_AUTHENTICATION_BASIC'];
 
 /**
  * Constructor
  *
  * @param array $config An array defining the configuration settings
  */
-	public function __construct($config = array()) {
+	public function __construct($config = []) {
 		parent::__construct($config);
 		$this->connect();
 	}
@@ -62,7 +62,7 @@ class SoapSource extends DataSource {
 			$this->showError('Class SoapClient not found, please enable Soap extensions');
 			return false;
 		}
-		$options = array('trace' => Configure::read('debug') > 0);
+		$options = ['trace' => Configure::read('debug') > 0];
 		if (!empty($this->config['location'])) {
 			$options['location'] = $this->config['location'];
 		}
@@ -124,14 +124,14 @@ class SoapSource extends DataSource {
  * @param array $queryData A list with parameters to pass
  * @return mixed Returns the result on success, false on failure
  */
-	public function query($method, $queryData = array()) {
+	public function query($method, $queryData = []) {
 		$this->error = false;
 		if (!$this->connected) {
 			return false;
 		}
 
 		if (!empty($queryData)) {
-			$queryData = array($queryData);
+			$queryData = [$queryData];
 		}
 
 		try {
