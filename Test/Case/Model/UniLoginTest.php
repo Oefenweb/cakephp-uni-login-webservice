@@ -65,7 +65,7 @@ class UniLoginTest extends CakeTestCase {
  *
  * @var array
  */
-	public $fixtures = array();
+	public $fixtures = [];
 
 /**
  * setUp method
@@ -107,10 +107,10 @@ class UniLoginTest extends CakeTestCase {
 		Configure::write('UniLoginWebservice.wsBrugerid', 'wsBrugerid');
 		Configure::write('UniLoginWebservice.wsPassword', 'wsPassword');
 
-		$expected = array(
+		$expected = [
 			'wsBrugerid' => 'wsBrugerid',
 			'wsPassword' => 'wsPassword'
-		);
+		];
 		$resut = $this->UniLogin->getAuthParameters();
 		$this->assertEquals($expected, $resut);
 
@@ -134,13 +134,13 @@ class UniLoginTest extends CakeTestCase {
  * @return void
  */
 	public function testConvertUserList() {
-		$expected = array();
-		$expected[] = array(
+		$expected = [];
+		$expected[] = [
 			'uni_login_key' => '123456',
 			'full_name' => 'My Full Name'
-		);
+		];
 		$userList = new stdClass();
-		$userList->PersonSimpel = array();
+		$userList->PersonSimpel = [];
 
 		foreach ($expected as $item) {
 			$userList->PersonSimpel[] = $this->_convertUserMinimal($item);
@@ -155,18 +155,18 @@ class UniLoginTest extends CakeTestCase {
  * @return void
  */
 	public function testConvertUserListValid() {
-		$expected = array(
-			array(
+		$expected = [
+			[
 				'uni_login_key' => 'Fe5Echew',
 				'full_name' => 'Amalie Jansson'
-			),
-			array(
+			],
+			[
 				'uni_login_key' => 'naJutr4s',
 				'full_name' => 'Katrine Juncker'
-			)
-		);
+			]
+		];
 		$userList = new stdClass();
-		$userList->PersonSimpel = array();
+		$userList->PersonSimpel = [];
 		$user = new stdClass();
 		$user->Navn = 'Amalie Jansson';
 		$user->Brugerid = 'Fe5Echew';
@@ -196,7 +196,7 @@ class UniLoginTest extends CakeTestCase {
  * @return void
  */
 	public function testConvertRoleValid() {
-		$mapping = array(
+		$mapping = [
 			'lærer' => 'teacher',
 			'tap' => 'technical / administrative employee',
 			'pæd' => 'educator', // Pædagog
@@ -215,7 +215,7 @@ class UniLoginTest extends CakeTestCase {
 			'hjpc_ansv' => 'HomePC responsible',
 			'hjpc_ansv_a' => 'HomePC responsible for A-leg',
 			'hjpc_ansv_p' => 'HomePC responsible for P-leg'
-		);
+		];
 		foreach ($mapping as $role => $expected) {
 			$result = $this->UniLogin->convertRole($role);
 			$this->assertEquals($expected, $result);
@@ -262,7 +262,7 @@ class UniLoginTest extends CakeTestCase {
 		$institution->Admkommune = 'Name of the administrating municipal';
 		$institution->Regionsnr = '1234';
 		$institution->Region = 'Name of the region';
-		$expected = array(
+		$expected = [
 			'uni_login_key' => '101001',
 			'name' => 'Name of institution.',
 			'type' => '121',
@@ -281,7 +281,7 @@ class UniLoginTest extends CakeTestCase {
 			'administrating_municipal_name' => 'Name of the administrating municipal',
 			'region' => '1234',
 			'region_name' => 'Name of the region',
-		);
+		];
 		$result = $this->UniLogin->convertInstitution($institution);
 		$this->assertEquals($expected, $result);
 	}
@@ -317,10 +317,10 @@ class UniLoginTest extends CakeTestCase {
 		$user = new stdClass();
 		$user->Brugerid = '101001';
 		$user->Navn = 'Svend Hansen';
-		$expected = array(
+		$expected = [
 			'uni_login_key' => '101001',
 			'full_name' => 'Svend Hansen'
-		);
+		];
 		$result = $this->UniLogin->convertUser($user, $minimal);
 		$this->assertEquals($expected, $result);
 	}
@@ -341,7 +341,7 @@ class UniLoginTest extends CakeTestCase {
 		$user->Instnr = '101005';
 		$user->Funktionsmarkering = 'kursist';
 		$user->Foedselsdag = '130597';
-		$expected = array(
+		$expected = [
 			'uni_login_key' => '101001',
 			'full_name' => 'Svend Hansen',
 			'first_name' => 'Svend',
@@ -352,7 +352,7 @@ class UniLoginTest extends CakeTestCase {
 			'uni_login_role' => 'kursist',
 			'role' => 'anonymous user with limited lifespan',
 			'date_of_birth' => '1997-05-13'
-		);
+		];
 		$result = $this->UniLogin->convertUser($user);
 		$this->assertEquals($expected, $result);
 	}
