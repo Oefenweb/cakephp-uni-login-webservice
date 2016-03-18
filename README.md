@@ -30,13 +30,28 @@ Configure::write('UniLoginWebservice.wsPassword', 'wsPassword');
 Ensure to configure the following lines in `app/Config/database.php`:
 
 ```
-public $uniLoginWebservice = array(
+public $uniLoginWebservice = [
 	'datasource' => 'UniLoginWebservice.SoapSource',
 	'wsdl' => 'https://ws02.infotjeneste.uni-c.dk/infotjeneste-ws/ws?WSDL'
-);
+];
 ```
 
 ## Usage
 
+### Make UniLogin webservice available (in a controller)
+
 ```
+public $uses = ['UniLoginWebservice.UniLogin'];
+```
+
+### Make a "helloWorld" call to UniLogin webservice (in a controller)
+
+```
+$this->UniLogin->helloWorld();
+```
+
+### Retrieve data of a person from UniLogin webservice by calling "hentPerson" (in a controller)
+
+```
+$person = $this->UniLogin->getPerson($brugerid);
 ```
