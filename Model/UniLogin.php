@@ -294,7 +294,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			'hjpc_ansv_a' => 'HomePC responsible for A-leg',
 			'hjpc_ansv_p' => 'HomePC responsible for P-leg'
 		];
-		return Hash::get($mapping, $role, false);
+		return Hash::get($mapping, $role) ?: false;
 	}
 
 /**
