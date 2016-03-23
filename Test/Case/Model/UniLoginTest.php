@@ -55,13 +55,13 @@ class TestUniLogin extends UniLogin {
 }
 
 /**
- * UniLogin Test
+ * UniLogin Test.
  *
  */
 class UniLoginTest extends CakeTestCase {
 
 /**
- * Fixtures
+ * Fixtures.
  *
  * @var array
  */
@@ -89,15 +89,21 @@ class UniLoginTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+/**
+ *
+ * @param type $user
+ * @return \stdClass
+ */
 	protected function _convertUserMinimal($user) {
 		$result = new stdClass();
 		$result->Brugerid = $user['uni_login_key'];
 		$result->Navn = $user['full_name'];
+
 		return $result;
 	}
 
 /**
- * testGetAuthParameters method
+ * Tests `UniLogin::getAuthParameters`.
  *
  * @return void
  */
@@ -118,18 +124,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testHelloWorld method
- *
- * @return void
- */
-	public function testHelloWorld() {
-		$this->markTestIncomplete(
-			'This test has not been implemented yet.'
-		);
-	}
-
-/**
- * testConvertUserList method
+ * Tests `UniLogin::convertUserList`.
  *
  * @return void
  */
@@ -150,7 +145,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertUserListValid method
+ * Tests `UniLogin::convertUserList`.
  *
  * @return void
  */
@@ -180,7 +175,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertRoleInvalid method
+ * Tests `UniLogin::convertRole`.
  *
  * @return void
  */
@@ -191,7 +186,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertRoleValid method
+ * Tests `UniLogin::convertRole`.
  *
  * @return void
  */
@@ -223,7 +218,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertInstitutionInvalid method
+ * Tests `UniLogin::convertInstitution`.
  *
  * @return void
  */
@@ -238,7 +233,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertInstitutionValid method
+ * Tests `UniLogin::convertInstitution`.
  *
  * @return void
  */
@@ -287,7 +282,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertUserInvalid method
+ * Tests `UniLogin::convertUser`.
  *
  * @return void
  */
@@ -308,7 +303,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertUserMinimalValid method
+ * Tests `UniLogin::convertUser`.
  *
  * @return void
  */
@@ -326,7 +321,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testConvertUserValid method
+ * Tests `UniLogin::convertUser`.
  *
  * @return void
  */
@@ -358,7 +353,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testParseDateInvalid method
+ * Tests `UniLogin::parseDate`.
  *
  * @return void
  */
@@ -373,7 +368,7 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
- * testParseDateValid method
+ * Tests `UniLogin::parseDate`.
  *
  * @return void
  */

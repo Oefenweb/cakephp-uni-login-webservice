@@ -1,8 +1,7 @@
 <?php
 /**
- * PersonSimpel class
+ * PersonSimpel class.
  *
- * @package       UniLoginWebservice.Lib
  */
 class PersonSimpel {
 
@@ -14,7 +13,7 @@ class PersonSimpel {
 	public $brugerid;
 
 /**
- * Full name of person
+ * Full name of person.
  *
  * @var string
  */

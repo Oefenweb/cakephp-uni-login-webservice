@@ -2,9 +2,8 @@
 App::uses('AppController', 'Controller');
 
 /**
- * UniLoginWebservice App Controller
+ * UniLoginWebservice App Controller.
  *
- * @package       UniLoginWebservice.Controller
  */
 class UniLoginWebserviceAppController extends AppController {
 

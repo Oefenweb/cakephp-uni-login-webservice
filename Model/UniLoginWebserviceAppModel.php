@@ -2,9 +2,8 @@
 App::uses('AppModel', 'Model');
 
 /**
- * UniLoginWebserviceApp Model
+ * UniLoginWebserviceApp Model.
  *
- * @package       UniLoginWebservice.Model
  */
 class UniLoginWebserviceAppModel extends AppModel {
 
