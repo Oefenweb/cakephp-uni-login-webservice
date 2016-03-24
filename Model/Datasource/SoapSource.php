@@ -1,5 +1,5 @@
 <?php
-App::uses('DataSource', 'Model.Datasource');
+App::uses('DataSource', 'Model/Datasource');
 
 /**
  * SOAP DataSource.
