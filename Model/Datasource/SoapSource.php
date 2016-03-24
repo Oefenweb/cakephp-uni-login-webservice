@@ -49,7 +49,8 @@ class SoapSource extends DataSource {
  */
 	public function __construct($config = []) {
 		parent::__construct($config);
-		$this->connect();
+
+		$this->connected = $this->connect();
 	}
 
 /**
@@ -88,17 +89,17 @@ class SoapSource extends DataSource {
  */
 	public function connect() {
 		$options = $this->_parseConfig();
-		try {
-			$this->client = new SoapClient($this->config['wsdl'], $options);
-		} catch(SoapFault $fault) {
-			$this->showError($fault->faultstring);
+
+		if (!empty($this->config['wsdl'])) {
+			try {
+				$this->client = new SoapClient($this->config['wsdl'], $options);
+				return (bool)$this->client;
+			} catch(SoapFault $fault) {
+				$this->showError($fault->faultstring);
+			}
 		}
 
-		if ($this->client) {
-			$this->connected = true;
-		}
-
-		return $this->connected;
+		return false;
 	}
 
 /**
