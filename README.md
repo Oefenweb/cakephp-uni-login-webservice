@@ -50,8 +50,44 @@ public $uses = ['UniLoginWebservice.UniLogin'];
 $this->UniLogin->helloWorld();
 ```
 
+### Make a "helloSOAPFaultDemo" call to UniLogin webservice (in a controller)
+
+```
+$this->UniLogin->helloSOAPFaultDemo();
+```
+
+### Retrieve data of employees from UniLogin webservice by calling "hentAnsatte" (in a controller)
+
+```
+$person = $this->UniLogin->getEmployees($instid);
+```
+
+### Retrieve detailed data of employees from UniLogin webservice by calling "hentAnsatte" and "hentPerson" for every employee (in a controller)
+
+```
+$person = $this->UniLogin->getEmployeesWithDetails($instid);
+```
+
+### Retrieve data of an institution from UniLogin webservice by calling "hentInstitution" (in a controller)
+
+```
+$person = $this->UniLogin->getInstitution($instid);
+```
+
 ### Retrieve data of a person from UniLogin webservice by calling "hentPerson" (in a controller)
 
 ```
 $person = $this->UniLogin->getPerson($brugerid);
+```
+
+### Retrieve data of students from UniLogin webservice by calling "hentAlleElever" (in a controller)
+
+```
+$person = $this->UniLogin->getStudents($instid);
+```
+
+### Retrieve detailed data of students from UniLogin webservice by calling "hentAlleElever" and "hentPerson" for every student (in a controller)
+
+```
+$person = $this->UniLogin->getStudentsWithDetails($instid);
 ```
