@@ -1,8 +1,7 @@
 <?php
 /**
- * Institution class
+ * Institution class.
  *
- * @package       UniLoginWebservice.Lib
  */
 class Institution {
 
@@ -35,42 +34,42 @@ class Institution {
 	public $typenavn;
 
 /**
- * Address
+ * Address.
  *
  * @var string
  */
 	public $adresse;
 
 /**
- * City name
+ * City name.
  *
  * @var string
  */
 	public $bynavn;
 
 /**
- * Zip code
+ * Zip code.
  *
  * @var string
  */
 	public $postnr;
 
 /**
- * Phone number
+ * Phone number.
  *
  * @var string
  */
 	public $telefonnr;
 
 /**
- * Fax number
+ * Fax number.
  *
  * @var string
  */
 	public $faxnr;
 
 /**
- * Mail address of the institution as stated in ”Institutionsregistret”
+ * Mail address of the institution as stated in "Institutionsregistret".
  *
  * @var string
  */
@@ -84,39 +83,37 @@ class Institution {
 	public $www;
 
 /**
- * 6-char institution nummer of main institution (from Danmarks
- * Statistik, e.g. 101001). Null if the current institution is the main
- * institution.
+ * 6-char institution nummer of main institution (from Danmarks Statistik, e.g. 101001).
+ * Null if the current institution is the main institution.
  *
  * @var string
  */
 	public $hovedinstitutionsnr;
 
 /**
- * 3-digit code identifying the municipal where the institution is located
+ * 3-digit code identifying the municipal where the institution is located.
  *
  * @var string
  */
 	public $kommunenr;
 
 /**
- * Name of municipal where the institution is located
+ * Name of municipal where the institution is located.
  *
  * @var string
  */
 	public $kommune;
 
 /**
- * 3-dige code identifying the municipal of the administrating municipal
- * (see Appendix 1.6.2)
+ * 3-dige code identifying the municipal of the administrating municipal (see Appendix 1.6.2).
  *
  * @var string
  */
 	public $admkommunenr;
 
 /**
- * Name of the administrating municipal (see Appendix 1.6.2). May
- * also be a 4-digit code identifying the region. (see Appendix 1.6.4).
+ * Name of the administrating municipal (see Appendix 1.6.2).
+ * May also be a 4-digit code identifying the region. (see Appendix 1.6.4).
  *
  * @var string
  */

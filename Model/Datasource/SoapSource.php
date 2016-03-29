@@ -1,36 +1,35 @@
 <?php
-App::uses('DataSource', 'Model.Datasource');
+App::uses('DataSource', 'Model/Datasource');
 
 /**
- * SOAP DataSource
+ * SOAP DataSource.
  *
- * @package       UniLoginWebservice.Model.Datasource
  */
 class SoapSource extends DataSource {
 
 /**
- * Description
+ * Description.
  *
  * @var string
  */
 	public $description = 'Soap Client DataSource';
 
 /**
- * SoapClient instance
+ * SoapClient instance.
  *
  * @var SoapClient
  */
 	public $client = null;
 
 /**
- * Connection status
+ * Connection status.
  *
  * @var bool
  */
 	public $connected = false;
 
 /**
- * Default configuration
+ * Default configuration.
  *
  * @var array
  */
@@ -40,20 +39,22 @@ class SoapSource extends DataSource {
 		'uri' => '',
 		'login' => '',
 		'password' => '',
-		'authentication' => 'SOAP_AUTHENTICATION_BASIC'];
+		'authentication' => 'SOAP_AUTHENTICATION_BASIC'
+	];
 
 /**
- * Constructor
+ * Constructor.
  *
  * @param array $config An array defining the configuration settings
  */
 	public function __construct($config = []) {
 		parent::__construct($config);
-		$this->connect();
+
+		$this->connected = $this->connect();
 	}
 
 /**
- * Setup Configuration options
+ * Setup Configuration options.
  *
  * @return array Configuration options
  */
@@ -62,53 +63,59 @@ class SoapSource extends DataSource {
 			$this->showError('Class SoapClient not found, please enable Soap extensions');
 			return false;
 		}
+
 		$options = ['trace' => Configure::read('debug') > 0];
 		if (!empty($this->config['location'])) {
 			$options['location'] = $this->config['location'];
 		}
+
 		if (!empty($this->config['uri'])) {
 			$options['uri'] = $this->config['uri'];
 		}
+
 		if (!empty($this->config['login'])) {
 			$options['login'] = $this->config['login'];
 			$options['password'] = $this->config['password'];
 			$options['authentication'] = $this->config['authentication'];
 		}
+
 		return $options;
 	}
 
 /**
- * Connects to the SOAP server using the WSDL in the configuration
+ * Connects to the SOAP server using the WSDL in the configuration.
  *
  * @return bool True on success, false on failure
  */
 	public function connect() {
 		$options = $this->_parseConfig();
-		try {
-			$this->client = new SoapClient($this->config['wsdl'], $options);
-		} catch(SoapFault $fault) {
-			$this->showError($fault->faultstring);
+
+		if (!empty($this->config['wsdl'])) {
+			try {
+				$this->client = new SoapClient($this->config['wsdl'], $options);
+				return (bool)$this->client;
+			} catch(SoapFault $fault) {
+				$this->showError($fault->faultstring);
+			}
 		}
 
-		if ($this->client) {
-			$this->connected = true;
-		}
-		return $this->connected;
+		return false;
 	}
 
 /**
- * Sets the SoapClient instance to null
+ * Sets the SoapClient instance to null.
  *
  * @return bool True
  */
 	public function close() {
 		$this->client = null;
 		$this->connected = false;
+
 		return true;
 	}
 
 /**
- * Returns the available SOAP methods
+ * Returns the available SOAP methods.
  *
  * @param mixed $data Unused in this class.
  * @return array List of SOAP methods
@@ -118,7 +125,7 @@ class SoapSource extends DataSource {
 	}
 
 /**
- * Query the SOAP server with the given method and parameters
+ * Query the SOAP server with the given method and parameters.
  *
  * @param string $method Name of method to call
  * @param array $queryData A list with parameters to pass
@@ -135,16 +142,15 @@ class SoapSource extends DataSource {
 		}
 
 		try {
-			$result = $this->client->__soapCall($method, $queryData);
+			return $this->client->__soapCall($method, $queryData);
 		} catch (SoapFault $fault) {
 			$this->showError($fault->faultstring);
 			return false;
 		}
-		return $result;
 	}
 
 /**
- * Returns the last SOAP response
+ * Returns the last SOAP response.
  *
  * @return string The last SOAP response
  */
@@ -153,7 +159,7 @@ class SoapSource extends DataSource {
 	}
 
 /**
- * Returns the last SOAP request
+ * Returns the last SOAP request.
  *
  * @return string The last SOAP request
  */
@@ -162,7 +168,7 @@ class SoapSource extends DataSource {
 	}
 
 /**
- * Writes an error message to log file
+ * Writes an error message to log file.
  *
  * @param string $error Error message
  * @return string The last SOAP response
