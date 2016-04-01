@@ -41,55 +41,55 @@ public $uniLoginWebservice = [
 
 ## Usage
 
-### Make UniLogin webservice available (in a controller)
+### Make UniLogin webservice available
 
 ```
 public $uses = ['UniLoginWebservice.UniLogin'];
 ```
 
-### Make a "helloWorld" call to UniLogin webservice (in a controller)
+### Make a "helloWorld" call
 
 ```
 $this->UniLogin->helloWorld();
 ```
 
-### Make a "helloSOAPFaultDemo" call to UniLogin webservice (in a controller)
+### Make a "helloSOAPFaultDemo" call
 
 ```
 $this->UniLogin->helloSOAPFaultDemo();
 ```
 
-### Retrieve data of employees from UniLogin webservice by calling "hentAnsatte" (in a controller)
+### Retrieve data of employees by calling "hentAnsatte"
 
 ```
 $person = $this->UniLogin->getEmployees($instid);
 ```
 
-### Retrieve detailed data of employees from UniLogin webservice by calling "hentAnsatte" and "hentPerson" for every employee (in a controller)
+### Retrieve detailed data of employees by calling "hentAnsatte" and "hentPerson" for every employee
 
 ```
 $person = $this->UniLogin->getEmployeesWithDetails($instid);
 ```
 
-### Retrieve data of an institution from UniLogin webservice by calling "hentInstitution" (in a controller)
+### Retrieve data of an institution by calling "hentInstitution"
 
 ```
 $person = $this->UniLogin->getInstitution($instid);
 ```
 
-### Retrieve data of a person from UniLogin webservice by calling "hentPerson" (in a controller)
+### Retrieve data of a person by calling "hentPerson"
 
 ```
 $person = $this->UniLogin->getPerson($brugerid);
 ```
 
-### Retrieve data of students from UniLogin webservice by calling "hentAlleElever" (in a controller)
+### Retrieve data of students by calling "hentAlleElever"
 
 ```
 $person = $this->UniLogin->getStudents($instid);
 ```
 
-### Retrieve detailed data of students from UniLogin webservice by calling "hentAlleElever" and "hentPerson" for every student (in a controller)
+### Retrieve detailed data of students by calling "hentAlleElever" and "hentPerson" for every student
 
 ```
 $person = $this->UniLogin->getStudentsWithDetails($instid);
