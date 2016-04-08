@@ -2,7 +2,7 @@
 App::uses('SoapSource', 'UniLoginWebservice.Model/Datasource');
 
 /**
- * Test Soap Source class
+ * Test Soap Source class.
  *
  */
 class TestSoapSource extends SoapSource {
@@ -22,7 +22,7 @@ class TestSoapSource extends SoapSource {
 }
 
 /**
- * Soap Source Test class
+ * Soap Source Test class.
  *
  */
 class SoapSourceTest extends CakeTestCase {
@@ -150,7 +150,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testListSources method
+ * testListSources method.
  *
  * @return void
  */
@@ -171,7 +171,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testQueryNotConnected method
+ * testQueryNotConnected method.
  *
  * @return void
  */
@@ -188,7 +188,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testQueryConnected method
+ * testQueryConnected method.
  *
  * @return void
  */
@@ -201,7 +201,8 @@ class SoapSourceTest extends CakeTestCase {
 		$expected = [345];
 		$method = 'test';
 		$params = 7;
-		$Source->client->expects($this->once())->method('__soapCall')->with($method, [$params])->will($this->returnValue($expected));
+		$Source->client->expects($this->once())->method('__soapCall')->with($method, [$params])
+			->will($this->returnValue($expected));
 		$Source->expects($this->never())->method('connect');
 
 		// Now call query
@@ -213,7 +214,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testQuerySoapFault method
+ * testQuerySoapFault method.
  *
  * @return void
  */
@@ -225,7 +226,8 @@ class SoapSourceTest extends CakeTestCase {
 
 		$method = 'test';
 		$params = 7;
-		$Source->client->expects($this->once())->method('__soapCall')->with($method, [$params])->will($this->throwException(new SoapFault('1', 'Error message!')));
+		$Source->client->expects($this->once())->method('__soapCall')->with($method, [$params])
+			->will($this->throwException(new SoapFault('1', 'Error message!')));
 		$Source->expects($this->never())->method('connect');
 
 		// Now call query
@@ -237,7 +239,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testGetResponse method
+ * testGetResponse method.
  *
  * @return void
  */
@@ -258,7 +260,7 @@ class SoapSourceTest extends CakeTestCase {
 	}
 
 /**
- * testGetRequest method
+ * testGetRequest method.
  *
  * @return void
  */
