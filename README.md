@@ -62,19 +62,19 @@ $this->UniLogin->helloSOAPFaultDemo();
 ### Retrieve data of employees by calling "hentAnsatte"
 
 ```
-$person = $this->UniLogin->getEmployees($instid);
+$employees = $this->UniLogin->getEmployees($instid);
 ```
 
 ### Retrieve detailed data of employees by calling "hentAnsatte" and "hentPerson" for every employee
 
 ```
-$person = $this->UniLogin->getEmployeesWithDetails($instid);
+$employees = $this->UniLogin->getEmployeesWithDetails($instid);
 ```
 
 ### Retrieve data of an institution by calling "hentInstitution"
 
 ```
-$person = $this->UniLogin->getInstitution($instid);
+$institution = $this->UniLogin->getInstitution($instid);
 ```
 
 ### Retrieve data of a person by calling "hentPerson"
@@ -86,11 +86,11 @@ $person = $this->UniLogin->getPerson($brugerid);
 ### Retrieve data of students by calling "hentAlleElever"
 
 ```
-$person = $this->UniLogin->getStudents($instid);
+$students = $this->UniLogin->getStudents($instid);
 ```
 
 ### Retrieve detailed data of students by calling "hentAlleElever" and "hentPerson" for every student
 
 ```
-$person = $this->UniLogin->getStudentsWithDetails($instid);
+$students = $this->UniLogin->getStudentsWithDetails($instid);
 ```
