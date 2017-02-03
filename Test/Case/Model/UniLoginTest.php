@@ -98,9 +98,10 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
+ * Converts a (minimal) user array to a user object.
  *
- * @param type $user
- * @return \stdClass
+ * @param array $user User data
+ * @return \stdClass User object
  */
 	protected function _convertUserMinimal($user) {
 		$result = new stdClass();
@@ -111,9 +112,10 @@ class UniLoginTest extends CakeTestCase {
 	}
 
 /**
+ * Converts a (minimal) institution array to a institution object.
  *
- * @param type $institution
- * @return \stdClass
+ * @param array $institution Institution data
+ * @return \stdClass Institution object
  */
 	protected function _convertInstitutionMinimal($institution) {
 		$result = new stdClass();
