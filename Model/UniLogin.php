@@ -97,7 +97,6 @@ class UniLogin extends UniLoginWebserviceAppModel {
  *
  * @param string $brugerid Unique UNI•Login user id.
  * @return array List of institutions
-
  */
 	public function getInstitutions($brugerid) {
 		$params = $this->_getAuthParameters();

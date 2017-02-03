@@ -123,7 +123,6 @@ class UniLoginTest extends CakeTestCase {
 		return $result;
 	}
 
-
 /**
  * Tests `UniLogin::getAuthParameters`.
  *
