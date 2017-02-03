@@ -198,7 +198,7 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * Converts array of Uni-Login PersonSimpel objects.
  *
  * @param array $userList Array of Uni-Login PersonSimpel objects
- * @return mixed Converted institution data (array), or false (bool) on failure
+ * @return mixed Converted user data (array), or false (bool) on failure
  */
 	protected function _convertUserList($userList) {
 		$result = false;
