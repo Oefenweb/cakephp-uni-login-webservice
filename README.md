@@ -77,6 +77,12 @@ $employees = $this->UniLogin->getEmployeesWithDetails($instid);
 $institution = $this->UniLogin->getInstitution($instid);
 ```
 
+### Retrieve data of institutions where the user "brugerid" has a relation by calling "hentInstitutionsliste"
+
+```
+$institutions = $this->UniLogin->getInstitutions($brugerid);
+```
+
 ### Retrieve data of a person by calling "hentPerson"
 
 ```

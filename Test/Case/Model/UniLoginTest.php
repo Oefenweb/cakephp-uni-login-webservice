@@ -24,8 +24,16 @@ class TestUniLogin extends UniLogin {
  * Public test double of `parent::_convertInstitution`.
  *
  */
-	public function convertInstitution($role) {
-		return parent::_convertInstitution($role);
+	public function convertInstitution($role, $minimal = false) {
+		return parent::_convertInstitution($role, $minimal);
+	}
+
+/**
+ * Public test double of `parent::_convertInstitutionList`.
+ *
+ */
+	public function convertInstitutionList($institutions) {
+		return parent::_convertInstitutionList($institutions);
 	}
 
 /**
@@ -101,6 +109,20 @@ class UniLoginTest extends CakeTestCase {
 
 		return $result;
 	}
+
+/**
+ *
+ * @param type $institution
+ * @return \stdClass
+ */
+	protected function _convertInstitutionMinimal($institution) {
+		$result = new stdClass();
+		$result->Instnr = $institution['uni_login_key'];
+		$result->Navn = $institution['name'];
+
+		return $result;
+	}
+
 
 /**
  * Tests `UniLogin::getAuthParameters`.
@@ -237,6 +259,24 @@ class UniLoginTest extends CakeTestCase {
  *
  * @return void
  */
+	public function testConvertInstitutionMinimalValid() {
+		$minimal = true;
+		$institution = new stdClass();
+		$institution->Instnr = '101001';
+		$institution->Navn = 'Name of institution.';
+		$expected = [
+			'uni_login_key' => '101001',
+			'name' => 'Name of institution.'
+		];
+		$result = $this->UniLogin->convertInstitution($institution, $minimal);
+		$this->assertEquals($expected, $result);
+	}
+
+/**
+ * Tests `UniLogin::convertInstitution`.
+ *
+ * @return void
+ */
 	public function testConvertInstitutionValid() {
 		$institution = new stdClass();
 		$institution->Instnr = '101001';
@@ -278,6 +318,27 @@ class UniLoginTest extends CakeTestCase {
 			'region_name' => 'Name of the region',
 		];
 		$result = $this->UniLogin->convertInstitution($institution);
+		$this->assertEquals($expected, $result);
+	}
+
+/**
+ * Tests `UniLogin::convertUserList`.
+ *
+ * @return void
+ */
+	public function testConvertInstitutionList() {
+		$expected = [];
+		$expected[] = [
+			'uni_login_key' => '123456',
+			'name' => 'Name'
+		];
+		$institutionList = new stdClass();
+		$institutionList->InstitutionSimpel = [];
+
+		foreach ($expected as $item) {
+			$institutionList->InstitutionSimpel[] = $this->_convertInstitutionMinimal($item);
+		}
+		$result = $this->UniLogin->convertInstitutionList($institutionList);
 		$this->assertEquals($expected, $result);
 	}
 

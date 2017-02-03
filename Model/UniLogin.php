@@ -91,6 +91,28 @@ class UniLogin extends UniLoginWebserviceAppModel {
 	}
 
 /**
+ * Returns a list of institutions where the user "brugerid" has a relation.
+ *
+ *  Wrapper for API call hentInstitutionsliste
+ *
+ * @param string $brugerid Unique UNI•Login user id.
+ * @return array List of institutions
+
+ */
+	public function getInstitutions($brugerid) {
+		$params = $this->_getAuthParameters();
+		$params['brugerid'] = $brugerid;
+
+		$result = $this->query('hentInstitutionsliste', $params);
+		$result = $this->_extractResult($result);
+		if ($result) {
+			$result = $this->_convertInstitutionList($result);
+		}
+
+		return $result;
+	}
+
+/**
  * Returns information about a person "brugerid".
  * "Institutionsnummer" is the user’s primary institution and "funktionsmarkering" is the relation to this institution.
  * Both may be empty if the user has no primary institution.
@@ -228,9 +250,10 @@ class UniLogin extends UniLoginWebserviceAppModel {
  * Converts Uni-Login Institution object.
  *
  * @param stdClass $institution Uni-Login Institution object
+ * @param bool $minimal Whether or the given user object is a PersonSimpel object
  * @return mixed Converted institution data (array), or false (bool) on failure
  */
-	protected function _convertInstitution($institution) {
+	protected function _convertInstitution($institution, $minimal = false) {
 		$mapping = [
 			'uni_login_key' => 'Instnr',
 			'name' => 'Navn',
@@ -251,6 +274,12 @@ class UniLogin extends UniLoginWebserviceAppModel {
 			'region' => 'Regionsnr',
 			'region_name' => 'Region',
 		];
+		if ($minimal) {
+			$mapping = [
+				'uni_login_key' => 'Instnr',
+				'name' => 'Navn',
+			];
+		}
 
 		$result = false;
 		if (is_object($institution)) {
@@ -261,6 +290,36 @@ class UniLogin extends UniLoginWebserviceAppModel {
 					break;
 				}
 				$result[$name] = $institution->{$property};
+			}
+		}
+
+		return $result;
+	}
+
+/**
+ * Converts array of Uni-Login InstitutionSimpel objects.
+ *
+ * @param array $institutionList Array of Uni-Login InstitutionSimpel objects
+ * @return mixed Converted institution data (array), or false (bool) on failure
+ */
+	protected function _convertInstitutionList($institutionList) {
+		$result = false;
+		if (is_object($institutionList)) {
+			$property = 'InstitutionSimpel';
+			if (property_exists($institutionList, $property)) {
+				if (is_array($institutionList->{$property})) {
+					$minimal = true;
+					$result = [];
+					foreach ($institutionList->{$property} as $institution) {
+						$item = $this->_convertInstitution($institution, $minimal);
+						if ($item) {
+							$result[] = $item;
+						} else {
+							$result = false;
+							break;
+						}
+					}
+				}
 			}
 		}
 
