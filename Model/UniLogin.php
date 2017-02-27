@@ -306,9 +306,9 @@ class UniLogin extends UniLoginWebserviceAppModel {
 		if (is_object($institutionList)) {
 			$property = 'InstitutionSimpel';
 			if (property_exists($institutionList, $property)) {
+				$minimal = true;
+				$result = [];
 				if (is_array($institutionList->{$property})) {
-					$minimal = true;
-					$result = [];
 					foreach ($institutionList->{$property} as $institution) {
 						$item = $this->_convertInstitution($institution, $minimal);
 						if ($item) {
@@ -318,6 +318,10 @@ class UniLogin extends UniLoginWebserviceAppModel {
 							break;
 						}
 					}
+				} elseif (is_object($institutionList->{$property})) {
+					$institution = $institutionList->{$property};
+
+					$result[] = $this->_convertInstitution($institution, $minimal);
 				}
 			}
 		}

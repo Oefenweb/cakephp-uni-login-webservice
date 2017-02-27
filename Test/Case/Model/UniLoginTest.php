@@ -327,7 +327,7 @@ class UniLoginTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testConvertInstitutionList() {
+	public function testConvertInstitutionListMultiple() {
 		$expected = [];
 		$expected[] = [
 			'uni_login_key' => '123456',
@@ -340,6 +340,24 @@ class UniLoginTest extends CakeTestCase {
 			$institutionList->InstitutionSimpel[] = $this->_convertInstitutionMinimal($item);
 		}
 		$result = $this->UniLogin->convertInstitutionList($institutionList);
+		$this->assertEquals($expected, $result);
+	}
+
+/**
+ * Tests `UniLogin::convertUserList`.
+ *
+ * @return void
+ */
+	public function testConvertInstitutionListSingle() {
+		$item = [
+			'uni_login_key' => '123456',
+			'name' => 'Name'
+		];
+		$institutionList = new stdClass();
+
+		$institutionList->InstitutionSimpel = $this->_convertInstitutionMinimal($item);
+		$result = $this->UniLogin->convertInstitutionList($institutionList);
+		$expected = [$item];
 		$this->assertEquals($expected, $result);
 	}
 
