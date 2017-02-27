@@ -318,8 +318,8 @@ class UniLogin extends UniLoginWebserviceAppModel {
 							break;
 						}
 					}
-				} else if (is_object($institutionList->{$property})) {
-					$institution = $institutionList->{$property};					
+				} elseif (is_object($institutionList->{$property})) {
+					$institution = $institutionList->{$property};
 
 					$result[] = $this->_convertInstitution($institution, $minimal);
 				}
