@@ -7,7 +7,7 @@ users (by institution). This service doesn't require a signed agreement of the i
 
 ## Requirements
 
-* CakePHP 2.4.2 or greater.
+* CakePHP 2.6.0 or greater.
 * PHP 5.4.16 or greater.
 
 ## Installation
