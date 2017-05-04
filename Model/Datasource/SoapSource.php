@@ -17,7 +17,7 @@ class SoapSource extends DataSource {
 /**
  * SoapClient instance.
  *
- * @var SoapClient
+ * @var SoapClient|null
  */
 	public $client = null;
 
@@ -56,7 +56,7 @@ class SoapSource extends DataSource {
 /**
  * Setup Configuration options.
  *
- * @return array Configuration options
+ * @return array|bool Configuration options or false on failure
  */
 	protected function _parseConfig() {
 		if (!class_exists('SoapClient')) {
@@ -132,7 +132,6 @@ class SoapSource extends DataSource {
  * @return mixed Returns the result on success, false on failure
  */
 	public function query($method, $queryData = []) {
-		$this->error = false;
 		if (!$this->connected) {
 			return false;
 		}
@@ -171,10 +170,10 @@ class SoapSource extends DataSource {
  * Writes an error message to log file.
  *
  * @param string $error Error message
- * @return string The last SOAP response
+ * @return void
  */
 	public function showError($error) {
-		$message = __d('uni_login_webservice', 'SOAP Error: %s', $error);
+		$message = __d('dpf_webservice', 'SOAP Error: %s', $error);
 		CakeLog::error($message);
 	}
 
