@@ -5,6 +5,7 @@
 [![Coverage Status](https://codecov.io/gh/Oefenweb/cakephp-uni-login-webservice/branch/master/graph/badge.svg)](https://codecov.io/gh/Oefenweb/cakephp-uni-login-webservice)
 [![Packagist downloads](http://img.shields.io/packagist/dt/Oefenweb/cakephp-uni-login-webservice.svg)](https://packagist.org/packages/oefenweb/cakephp-uni-login-webservice)
 [![Code Climate](https://codeclimate.com/github/Oefenweb/cakephp-uni-login-webservice/badges/gpa.svg)](https://codeclimate.com/github/Oefenweb/cakephp-uni-login-webservice)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Oefenweb/cakephp-uni-login-webservice/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Oefenweb/cakephp-uni-login-webservice/?branch=master)
 
 This plugin communicates with the UNI•Login webservice (WS-02). This webservice provides basic information of UNI•Login
 users (by institution). This service doesn't require a signed agreement of the institution.
